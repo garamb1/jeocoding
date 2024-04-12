@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'com.diffplug.spotless' version "6.22.0"
+}
+
+group = 'it.garambo'
+
+spotless {
+    java {
+        importOrder()
+        removeUnusedImports()
+        googleJavaFormat()
+    }
+}
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.32'
+    implementation group: 'ch.randelshofer', name: 'fastdoubleparser', version: '1.0.0'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.12'
+    implementation group: 'org.apache.commons', name: 'commons-text', version: '1.11.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
