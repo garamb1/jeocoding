@@ -17,7 +17,7 @@ public class LocationRepository {
 
   private final Map<String, Location> locationMap;
 
-  private LocationRepository(File file) throws IOException {
+  public LocationRepository(File file) throws IOException {
     locationMap = new HashMap<>();
     load(file);
   }
